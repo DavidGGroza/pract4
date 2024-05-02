@@ -2,6 +2,7 @@ package arbolbinario;
 
 import jdk.jshell.execution.Util;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -177,19 +178,33 @@ public class Arbol {
     // TODO 2.4
     public String[] generarDerivaciones() {
         NodoArbol nodo = raiz;
-        String[] reglas = new String[100];
-        if (nodo != null) {
-            if ((nodo.getIzquierdo() != null) && (nodo.getDerecho() != null)) {
-                insertarDato(reglas,nodo.getDato()+"->"+nodo.getIzquierdo().getDato()+" "+nodo.getDerecho().getDato());
+        int k=0;
+        String[] reglasAux = new String[100];
+        String[] aux =preOrdenArrStr(reglasAux,nodo);
+        for(int i=0;i<reglasAux.length;i++){
+            if(aux[i]!=null){
+                k++;
             }
-            if ((nodo.getIzquierdo() != null)&&(nodo.getDerecho() == null)) {
-                insertarDato(reglas,nodo.getDato()+"->"+nodo.getIzquierdo().getDato());
-            }
-            nodo.getIzquierdo().getDato();
-
+        }
+        String[] reglas = new String[k];
+        for(int i=0;i<k;i++){
+            reglas[i]=aux[i];
         }
         return reglas;
+    }
 
+    private String[] preOrdenArrStr(String[]array,NodoArbol nodo) {
+        if (nodo != null) {
+            if ((nodo.getIzquierdo() != null) && (nodo.getDerecho() != null)) {
+                insertarDato(array,nodo.getDato()+"->"+nodo.getIzquierdo().getDato()+" "+nodo.getDerecho().getDato());
+            }
+            if ((nodo.getIzquierdo() != null)&&(nodo.getDerecho() == null)) {
+                insertarDato(array,nodo.getDato()+"->"+nodo.getIzquierdo().getDato());
+            }
+            this.preOrdenArrStr(array,nodo.getIzquierdo());
+            this.preOrdenArrStr(array,nodo.getDerecho());
+        }
+        return array;
     }
 
     public void insertarDato(String[]array,String dato){
@@ -208,15 +223,34 @@ public class Arbol {
     // ------------------------------------------------------------------------
     // TODO 2.5
     public String generarFrase() {
-        String frase=" ";
-        if (raiz != null) {
-            if(Utilidades.esSimboloTerminal(raiz.getDato())) {
-                frase = frase+" "+raiz.getDato();
+        NodoArbol nodo = raiz;
+        int k =0;
+        String frase = " ";
+        String[] reglasAux = new String[100];
+        String[] aux = preOrdenGenFras(reglasAux,nodo);
+        for (int i = 0; i < reglasAux.length; i++) {
+            if (aux[i] != null) {
+                k++;
             }
-            this.preOrdenRec(raiz.getIzquierdo());
-            this.preOrdenRec(raiz.getDerecho());
+        }
+        String[] reglas = new String[k];
+        for(int i = 0; i < k; i++) {
+            reglas[i] = aux[i];
+        }
+        for(int i = 0; i < k; i++) {
+            frase=frase+" "+reglas[i];
         }
         return frase;
+    }
+    private String[] preOrdenGenFras(String[]array,NodoArbol nodo) {
+        if (nodo != null) {
+            if(Utilidades.esSimboloTerminal(nodo.getDato())){
+                insertarDato(array,nodo.getDato());
+            }
+            this.preOrdenGenFras(array,nodo.getIzquierdo());
+            this.preOrdenGenFras(array,nodo.getDerecho());
+        }
+        return array;
     }
 
 

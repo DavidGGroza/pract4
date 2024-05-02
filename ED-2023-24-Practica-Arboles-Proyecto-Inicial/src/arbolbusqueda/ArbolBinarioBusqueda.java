@@ -164,7 +164,10 @@ public class ArbolBinarioBusqueda {
 
 	// ------------------------------------------------------------------------
 	// TODO 3.2
-	public void agregarRangoDeMatriculas(int matInicio, int matFin, Alumno a) {}
+	public void agregarRangoDeMatriculas(int matInicio, int matFin, Alumno a) {
+
+
+	}
 
 	// ------------------------------------------------------------------------
 	// TODO 3.3
