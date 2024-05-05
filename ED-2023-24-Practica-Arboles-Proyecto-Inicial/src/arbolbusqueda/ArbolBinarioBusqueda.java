@@ -1,4 +1,4 @@
-﻿package arbolbusqueda;
+package arbolbusqueda;
 
 public class ArbolBinarioBusqueda {
 
@@ -166,10 +166,10 @@ public class ArbolBinarioBusqueda {
     // TODO 3.2
     public void agregarRangoDeMatriculas(int matInicio, int matFin, Alumno a) {
         int rango = matFin - matInicio;
-        a.setMatricula(matInicio);
         for (int i = 0; i < rango; i++) {
-            a.setMatricula(matInicio + i);
-            insertar(a);
+            Alumno aux = new Alumno(a.getNombre(),matInicio,a.getCalificacion());
+            aux.setMatricula(matInicio + i);
+            insertar(aux);
         }
     }
 
