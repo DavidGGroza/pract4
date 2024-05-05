@@ -1,4 +1,4 @@
-package arbolbusqueda;
+﻿package arbolbusqueda;
 
 public class ArbolBinarioBusqueda {
 
@@ -165,20 +165,30 @@ public class ArbolBinarioBusqueda {
 	// ------------------------------------------------------------------------
 	// TODO 3.2
 	public void agregarRangoDeMatriculas(int matInicio, int matFin, Alumno a) {
-
-
+		int rango = matFin-matInicio;
+		a.setMatricula(matInicio);
+		for(int i =0;i<rango;i++){
+			a.setMatricula(matInicio+i);
+			insertar(a);
+		}
 	}
 
 	// ------------------------------------------------------------------------
 	// TODO 3.3
-	public void eliminarRangoMatriculas(int minimaMat, int maximaMat) {}
+	public void eliminarRangoMatriculas(int minimaMat, int maximaMat) {
+
+	}
 
 	// ------------------------------------------------------------------------
 	// TODO 3.4
-	public Alumno encontrarSucesorInmediato(Alumno a) {return null;}
+	public Alumno encontrarSucesorInmediato(Alumno a) {
+
+		return null;}
 
 	//------------------------------------------------------------------------
 	// TODO 3.5
-	public void pivotarSobre(Alumno a) {}
+	public void pivotarSobre(Alumno a) {
+
+	}
 
 }
