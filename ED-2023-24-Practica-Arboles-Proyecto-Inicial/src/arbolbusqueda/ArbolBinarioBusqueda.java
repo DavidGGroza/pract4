@@ -211,31 +211,41 @@ public class ArbolBinarioBusqueda {
     // TODO 3.5
     public void pivotarSobre(Alumno a) {
         NodoArbol aux = raiz;
-        Alumno alumIzq = getElementoRec(aux.getIzquierdo(), a.getMatricula());
-        Alumno alumDer = getElementoRec(aux.getDerecho(), a.getMatricula());
+        Alumno auxIzq = getElementoRec(aux.getIzquierdo(),a.getMatricula());
+        Alumno auxDer = getElementoRec(aux.getDerecho(),a.getMatricula());
+        if(aux.getDato() != a) {
 
-        if (aux.getClave() != a.getMatricula()) {
-
-            if(aux.getClave() < a.getMatricula()){
-
+            if (auxIzq != null) {
+                if(aux.getIzquierdo().getDato()==a){
+                    raiz=rotarDerecha(aux.getIzquierdo());
+                }else {
+                    rotarDerecha(aux.getIzquierdo());
+                }
+                pivotarSobre(a);
             }
-            if(aux.getClave() < a.getMatricula()){
-
+            if (auxDer != null) {
+                if(aux.getIzquierdo().getDato()==a){
+                    raiz=rotarIzquierda(aux.getDerecho());
+                }else {
+                    rotarIzquierda(aux.getDerecho());
+                }
+                pivotarSobre(a);
             }
-
         }
-    }
 
-    private Alumno buscarElementoRec(NodoArbol nodo, int clave) {
-        if (nodo == null) {    // No encontrado
-            return null;
-        } else if (clave == nodo.getClave()) {    // Encontrado
-            return nodo.getDato();
-        } else if (clave < nodo.getClave()) {     // Subárbol izquierdo
-            return this.getElementoRec(nodo.getIzquierdo(), clave);
-        } else {        // Subárbol izquierdo
-            return this.getElementoRec(nodo.getDerecho(), clave);
+
+
+    }
+    public NodoArbol nodoAnterior(NodoArbol nodo,int clave){
+        NodoArbol aux = nodo;
+        Alumno auxI= getElementoRec(aux.getIzquierdo(),clave);
+        Alumno auxD= getElementoRec(aux.getIzquierdo(),clave);
+        if(auxI != null){
+            return nodoAnterior(aux.getIzquierdo(),clave);
         }
-    }
+        else{
+            return nodoAnterior(aux.getDerecho(),clave);
+        }
 
+    }
 }
