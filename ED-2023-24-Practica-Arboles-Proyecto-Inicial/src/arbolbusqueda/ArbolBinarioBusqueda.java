@@ -167,7 +167,7 @@ public class ArbolBinarioBusqueda {
     public void agregarRangoDeMatriculas(int matInicio, int matFin, Alumno a) {
         int rango = matFin - matInicio;
         for (int i = 0; i < rango; i++) {
-            Alumno aux = new Alumno(a.getNombre(),matInicio,a.getCalificacion());
+            Alumno aux = new Alumno(a.getNombre(), matInicio, a.getCalificacion());
             aux.setMatricula(matInicio + i);
             insertar(aux);
         }
@@ -176,7 +176,10 @@ public class ArbolBinarioBusqueda {
     // ------------------------------------------------------------------------
     // TODO 3.3
     public void eliminarRangoMatriculas(int minimaMat, int maximaMat) {
-        borrar(minimaMat);
+        if (contiene(minimaMat)) {
+            borrar(minimaMat);
+
+        }
         minimaMat += 1;
         if (minimaMat < maximaMat) {
             eliminarRangoMatriculas(minimaMat, maximaMat);
@@ -190,12 +193,12 @@ public class ArbolBinarioBusqueda {
         if (contiene(clave)) {
             NodoArbol aux1 = raiz;
             Alumno aux2 = getElemento(clave);
-            while(aux1.getDato()!=aux2){
-                aux1=aux1.getDerecho();
+            while (aux1.getDato() != aux2) {
+                aux1 = aux1.getDerecho();
             }
-            if(aux1.getDerecho()==null){
+            if (aux1.getDerecho() == null) {
                 return null;
-            }else{
+            } else {
                 return aux1.getDerecho().getDato();
             }
 
@@ -207,8 +210,32 @@ public class ArbolBinarioBusqueda {
     //------------------------------------------------------------------------
     // TODO 3.5
     public void pivotarSobre(Alumno a) {
+        NodoArbol aux = raiz;
+        Alumno alumIzq = getElementoRec(aux.getIzquierdo(), a.getMatricula());
+        Alumno alumDer = getElementoRec(aux.getDerecho(), a.getMatricula());
 
+        if (aux.getClave() != a.getMatricula()) {
 
+            if(aux.getClave() < a.getMatricula()){
+
+            }
+            if(aux.getClave() < a.getMatricula()){
+
+            }
+
+        }
+    }
+
+    private Alumno buscarElementoRec(NodoArbol nodo, int clave) {
+        if (nodo == null) {    // No encontrado
+            return null;
+        } else if (clave == nodo.getClave()) {    // Encontrado
+            return nodo.getDato();
+        } else if (clave < nodo.getClave()) {     // Subárbol izquierdo
+            return this.getElementoRec(nodo.getIzquierdo(), clave);
+        } else {        // Subárbol izquierdo
+            return this.getElementoRec(nodo.getDerecho(), clave);
+        }
     }
 
 }

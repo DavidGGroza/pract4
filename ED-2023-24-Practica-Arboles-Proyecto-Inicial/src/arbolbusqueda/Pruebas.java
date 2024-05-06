@@ -35,6 +35,20 @@ public class Pruebas {
 		arbol.preOrdenNivel();
 		System.out.println(" ");
 
+		System.out.print("ABB alumnos tras eliminar el rango de matrículas [500-600].");
+		arbol.eliminarRangoMatriculas(500,600);
+		arbol.preOrdenNivel();
+		System.out.println(" ");
+
+		Alumno nextPedro = arbol.encontrarSucesorInmediato(pedro);
+		Alumno nextAlicia = arbol.encontrarSucesorInmediato(alicia);
+		System.out.println("El sucesor inmediato a "+pedro.toString()+" es "+nextPedro.toString());
+		System.out.println("El sucesor inmediato a "+alicia.toString()+" es "+nextAlicia);
+		System.out.println(" ");
+
+		System.out.println("ABB alumnos tras pivotar a "+diego.toString()+" a la raiz.");
+		arbol.pivotarSobre(diego);
+		arbol.preOrdenNivel();
 
 
 		System.out.println("----------------------------------------------------");
