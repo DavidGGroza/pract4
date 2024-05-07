@@ -49,6 +49,9 @@ public class Pruebas {
 		System.out.println("ABB alumnos tras pivotar a "+diego.toString()+" a la raiz.");
 		arbol.pivotarSobre(diego);
 		arbol.preOrdenNivel();
+		System.out.println("ABB alumnos tras pivotar a "+diego.toString()+" a la raiz.");
+		arbol.pivotarSobre(diego);
+		arbol.preOrdenNivel();
 
 
 		System.out.println("----------------------------------------------------");
