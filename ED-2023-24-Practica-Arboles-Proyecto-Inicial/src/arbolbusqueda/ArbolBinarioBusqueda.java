@@ -209,12 +209,20 @@ public class ArbolBinarioBusqueda {
 
     //------------------------------------------------------------------------
     // TODO 3.5
-    public void pivotarSobre(Alumno a) {
-
-    }
-    public void pivotarSobreRec(int clave,NodoArbol nodo) {
-
-
+    public void pivotarSobre(Alumno a) {pivotarSobreRec(a.getMatricula(),raiz);}
+    public NodoArbol pivotarSobreRec(int clave,NodoArbol nodo) {
+        NodoArbol aux = nodo;
+        if(aux.getClave()!=clave) {
+            if (clave < aux.getClave()) {
+                aux.setIzquierdo(pivotarSobreRec(clave,aux));
+                return rotarDerecha(aux);
+            }
+            if (clave > aux.getClave()) {
+                aux.setDerecho(pivotarSobreRec(clave,aux));
+                return rotarIzquierda(aux);
+            }
+        }
+        return aux;
     }
 
 }
